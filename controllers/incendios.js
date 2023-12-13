@@ -1,5 +1,5 @@
 const Incendios = require("../models/incendios");
-const { pool } = require("../database/conexion");
+const { pool, conexion_postgres } = require("../database/conexion");
 
 const ObtenerAlertas = async (req, res) => {
   try {
