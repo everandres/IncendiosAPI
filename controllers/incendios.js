@@ -1,4 +1,5 @@
 const Incendios = require("../models/incendios");
+const { pool } = require("../database/conexion");
 
 const ObtenerAlertas = async (req, res) => {
   try {
@@ -9,4 +10,16 @@ const ObtenerAlertas = async (req, res) => {
   }
 };
 
-module.exports = { ObtenerAlertas };
+const AlertasIncendios = async (req, res) => {
+  try {
+    // Realiza la consulta a la base de datos
+    const result = await pool.query("SELECT * FROM public.incendios");
+    // Envía los resultados como JSON
+    res.status(200).json(result.rows);
+  } catch (err) {
+    // Maneja cualquier error que ocurra durante la consulta
+    res.status(500).json({ status: "failed", msg: err.message });
+  }
+};
+
+module.exports = { ObtenerAlertas, AlertasIncendios };
