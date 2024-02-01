@@ -13,7 +13,7 @@ const ObtenerAlertas = async (req, res) => {
 const AlertasIncendios = async (req, res) => {
   try {
     // Realiza la consulta a la base de datos
-    const result = await pool.query("SELECT * FROM public.incendios");
+    const result = await pool.query("SELECT * FROM public.alertas_incendios");
     // Envía los resultados como JSON
     res.status(200).json(result.rows);
   } catch (err) {
